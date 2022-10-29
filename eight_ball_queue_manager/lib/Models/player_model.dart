@@ -1,5 +1,5 @@
 class Player {
-  String name;
+  final String name;
 
   Player(this.name);
 }
