@@ -29,12 +29,21 @@ class DB {
 
   _onCreate(db, versao) async {
     await db.execute(_players);
+    await db.execute(_is_playing);
   }
 
   String get _players => '''
     CREATE TABLE players (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT
+    )
+  ''';
+
+  String get _is_playing => '''
+    CREATE TABLE is_playing (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id_player INTEGER,
+      FOREIGN KEY (id_player) REFERENCES players(id)
     )
   ''';
 }
