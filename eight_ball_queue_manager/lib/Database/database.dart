@@ -16,7 +16,7 @@ class DB {
     sqfliteFfiInit();
     String databasePath = await databaseFactoryFfi.getDatabasesPath();
     String path = join(databasePath, _databaseName);
-    print(path);
+    debugPrint(path);
     DatabaseFactory databaseFactory = databaseFactoryFfi;
     return await databaseFactory.openDatabase(
       path,
@@ -29,7 +29,7 @@ class DB {
 
   _onCreate(db, versao) async {
     await db.execute(_players);
-    await db.execute(_is_playing);
+    await db.execute(_isPlaying);
   }
 
   String get _players => '''
@@ -39,7 +39,7 @@ class DB {
     )
   ''';
 
-  String get _is_playing => '''
+  String get _isPlaying => '''
     CREATE TABLE is_playing (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       id_player INTEGER,
