@@ -5,6 +5,8 @@ class DB {
   static final DB instance = DB._();
   static Database? _database;
 
+  final _databaseName = 'queue.db';
+
   get database async {
     if (_database != null) return _database;
     return await _initDatabase();
@@ -13,7 +15,7 @@ class DB {
   _initDatabase() async {
     sqfliteFfiInit();
     String databasePath = await databaseFactoryFfi.getDatabasesPath();
-    String path = join(databasePath, 'queue.db');
+    String path = join(databasePath, _databaseName);
     print(path);
     DatabaseFactory databaseFactory = databaseFactoryFfi;
     return await databaseFactory.openDatabase(
